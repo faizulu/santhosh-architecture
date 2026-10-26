@@ -1,69 +1,78 @@
+import { Syne } from "next/font/google";
 import Image from "next/image";
+import Link from "next/link";
+import { AutoWrite } from "@/components/auto-write";
+import { FloatingWorks } from "@/components/floating-works";
+import { LandingSocial } from "@/components/landing-social";
+import { studio } from "@/lib/studio";
 
-export default function Home() {
+const display = Syne({
+  subsets: ["latin"],
+  weight: ["500", "700"],
+});
+
+const lines = [
+  "Houses, interiors, and research from one studio.",
+  "Each project starts with a visit to the plot.",
+  "Drawings are held to a set a builder can price.",
+  "Courts, verandahs, and rooms for daily use.",
+];
+
+const buttonClass =
+  "inline-flex min-h-11 w-full items-center justify-center whitespace-nowrap bg-white px-5 text-[11px] font-medium uppercase tracking-[0.14em] text-neutral-950 motion-safe:active:scale-[0.98] sm:w-auto";
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <section className="relative min-h-[100dvh] text-white">
+      <Image
+        src="/images/upper-floor.jpg"
+        alt="A pale dining room with a wooden table, a sheer curtain, and sliding doors onto a planted balcony."
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center brightness-110"
+      />
+      <div className="absolute inset-0 bg-black/15" />
+      <div className="relative z-10 grid min-h-[100dvh] items-center lg:grid-cols-[30%_1fr]">
+        <FloatingWorks />
+        <div className="mx-auto w-full max-w-xl px-5 py-10 text-center sm:px-8 lg:mx-0 lg:max-w-2xl lg:px-12 lg:text-left">
+          <div className={`${display.className} mx-auto w-fit max-w-full text-left [text-shadow:0_1px_8px_rgba(0,0,0,0.55)] lg:mx-0`}>
+            <h1 className="text-5xl font-bold leading-[0.9] tracking-[-0.045em] sm:text-6xl">
+              <span className="block">North Point</span>
+              <span className="mt-1 block">Architectures</span>
+            </h1>
+            <p className="mt-3 text-[13px] font-medium tracking-[0.18em]">
+              <AutoWrite words={["creating landmarks"]} repeat={false} />
+            </p>
+          </div>
+          <p className="mt-5 text-[13px] uppercase tracking-[0.16em] [text-shadow:0_1px_8px_rgba(0,0,0,0.55)]">
+            Architecture | Interior | Research
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <p className="mt-3 text-[11px] uppercase tracking-[0.42em] [text-shadow:0_1px_8px_rgba(0,0,0,0.55)]">
+            {studio.place}
+          </p>
+          <ul className="mx-auto mt-4 max-w-md space-y-1.5 text-sm leading-relaxed [text-shadow:0_1px_8px_rgba(0,0,0,0.55)] lg:mx-0">
+            {lines.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
+            <Link href="/enquiry" className={buttonClass}>
+              New projects enquiry
+            </Link>
+            <Link href="/work" className={buttonClass}>
+              See our work
+            </Link>
+          </div>
+          <LandingSocial />
+          <Link
+            href="/practice"
+            className="mt-4 inline-block text-sm underline underline-offset-4 [text-shadow:0_1px_8px_rgba(0,0,0,0.55)]"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Practice
+          </Link>
         </div>
-      </main>
-    </div>
+      </div>
+    </section>
   );
 }
